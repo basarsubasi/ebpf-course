@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  ebpf-dev1:
+    build: .
+    platform: linux/arm64/v8
+    container_name: ebpf-dev-container-1
+    privileged: true
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    networks:
+      ipvlan-net:
+        ipv4_address: 192.168.1.51
+    volumes:
+      - ./data-dev1:/root/ebpf:rw
+      - /lib/modules:/lib/modules:ro
+      - /usr/src:/usr/src:ro
+
+  ebpf-dev2:
+    build: .
+    platform: linux/arm64/v8
+    container_name: ebpf-dev-container-2
+    privileged: true
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    networks:
+      ipvlan-net:
+        ipv4_address: 192.168.1.52
+    volumes:
+      - ./data-dev2:/root/ebpf:rw
+      - /lib/modules:/lib/modules:ro
+      - /usr/src:/usr/src:ro
+
+networks:
+  ipvlan-net:
+    external: true
