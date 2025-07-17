@@ -1,0 +1,28 @@
+Test instructions:
+
+1. Compile the bpf code
+
+clang \
+  -O2 \
+  -target bpf \
+  -c xdp_drop.c -o xdp_drop.o
+
+2. Attach it to your network interface
+
+# replace "eth0" with your real interface:
+
+ip link set dev eth0 xdp obj xdp_drop.o sec xdp
+
+3. Verify it is loaded 
+
+ip -d link show dev eth0
+ # look for “prog/xdp id …” in the output
+
+4. Ping your container from another container 
+ # the program should block any incoming pings
+
+5. Detach it to deactivate the program
+ ip link set dev eth0 xdp off
+
+6. Ping your container again 
+ # This time you should be recieving the pings
