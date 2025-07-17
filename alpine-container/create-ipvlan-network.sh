@@ -44,7 +44,7 @@ docker network create \
   --opt ipvlan_mode="${IPVLAN_MODE}" \
   --opt parent="${PARENT_INTERFACE}" \
   --subnet="${SUBNET}" \
-  --gateway"${GATEWAY}" \
+  --gateway="${GATEWAY}" \
   "${NETWORK_NAME}"
 
 echo "✅ Network '${NETWORK_NAME}' created."
