@@ -1,0 +1,39 @@
+
+
+services:
+  ebpf-dev1:
+    build: .
+    container_name: ebpf-dev-container-1
+    privileged: true           # for BPF syscalls, insmod, /dev/kmsg, etc.
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+
+    networks:
+      ipvlan-net: # ipvlan network name that you've created
+        ipv4_address: 192.168.1.51 # ip address you want to give to this container
+
+    volumes:
+      - ./data-dev1:/root/ebpf:rw # your persistent data folder (work here, binded to "data-dev1" on host)
+      - /lib/modules:/lib/modules:ro
+      - /usr/src:/usr/src:ro        # <── pulls in all linux-headers-* here
+
+  ebpf-dev2: # second container config
+    build: .
+    container_name: ebpf-dev-container-2
+    privileged: true          
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    networks:
+      ipvlan-net: 
+        ipv4_address: 192.168.1.52 # different ip address than the first one
+    volumes:
+      - ./data-dev2:/root/ebpf:rw # your persistent data folder (different from the first one)
+      - /lib/modules:/lib/modules:ro
+      - /usr/src:/usr/src:ro  
+
+
+networks:
+  ipvlan-net: # same ipvlan network name 
+    external: true
