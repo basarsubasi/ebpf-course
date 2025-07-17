@@ -1,0 +1,22 @@
+Prerequisites
+
+1. Make sure you are using a Linux distrubution
+
+2. Make sure you have Docker and docker-compose installed
+
+
+Configuring your containers
+
+1. Start with creating your ipvlan docker network, 
+    you can use the "create-ipvlan-network.sh" script for this
+
+2. Look at your docker-compose.yaml file and configure your setup there
+
+3. Lastly check out your Dockerfile, add any extra packages you need
+     but do not remove any  packages.
+
+
+Running the containers
+
+1. When everything is ready to go, use the "docker-compose up -d --build" command to 
+    run your containers.
