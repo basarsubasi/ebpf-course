@@ -24,6 +24,10 @@ IPVLAN_MODE="l2"
 # CIDR subnet for the new Docker network
 SUBNET="192.168.1.0/24"
 
+# GATEWAY for the network
+
+GATEWAY="192.168.1.1"
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Main
 # ─────────────────────────────────────────────────────────────────────────────
@@ -32,6 +36,7 @@ echo "Creating Docker IPvLAN network '${NETWORK_NAME}'"
 echo "  parent interface : ${PARENT_INTERFACE}"
 echo "  mode             : ${IPVLAN_MODE}"
 echo "  subnet           : ${SUBNET}"
+echo "  subnet           : ${GATEWAY}"
 echo
 
 docker network create \
@@ -39,6 +44,7 @@ docker network create \
   --opt ipvlan_mode="${IPVLAN_MODE}" \
   --opt parent="${PARENT_INTERFACE}" \
   --subnet="${SUBNET}" \
+  --gateway"${GATEWAY}" \
   "${NETWORK_NAME}"
 
 echo "✅ Network '${NETWORK_NAME}' created."
