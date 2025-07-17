@@ -34,18 +34,6 @@ RUN apt-get update \
 
 
 
-RUN mkdir /var/run/sshd && \
-    echo "root:raspberry" | chpasswd
-
-# Enable root login and password authentication
-RUN sed -i 's/^#\?PermitRootLogin .*/PermitRootLogin yes/' /etc/ssh/sshd_config && \
-    sed -i 's/^#\?PasswordAuthentication .*/PasswordAuthentication yes/' /etc/ssh/sshd_config
-
-
-
-# Start SSH daemon
-CMD ["/usr/sbin/sshd", "-D"]
-
 WORKDIR /root/ebpf
 
 ENTRYPOINT ["/bin/bash"]

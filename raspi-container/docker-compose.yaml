@@ -14,8 +14,7 @@ services:
         ipv4_address: 192.168.1.51
     volumes:
       - ./data-dev1:/root/ebpf:rw
-      - /lib/modules:/lib/modules:ro
-      - /usr/src:/usr/src:ro
+
 
   ebpf-dev2:
     build: .
@@ -30,8 +29,6 @@ services:
         ipv4_address: 192.168.1.52
     volumes:
       - ./data-dev2:/root/ebpf:rw
-      - /lib/modules:/lib/modules:ro
-      - /usr/src:/usr/src:ro
 
 networks:
   ipvlan-net:
