@@ -1,0 +1,41 @@
+
+fork:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000401000 <_start>:
+  401000:	48 c7 c0 39 00 00 00 	mov    $0x39,%rax
+  401007:	0f 05                	syscall
+  401009:	48 83 f8 00          	cmp    $0x0,%rax
+  40100d:	74 61                	je     401070 <child_process>
+  40100f:	48 85 c0             	test   %rax,%rax
+  401012:	78 2e                	js     401042 <fork_error>
+  401014:	48 c7 c0 01 00 00 00 	mov    $0x1,%rax
+  40101b:	48 c7 c7 01 00 00 00 	mov    $0x1,%rdi
+  401022:	48 8d 35 d7 0f 00 00 	lea    0xfd7(%rip),%rsi        # 402000 <parent_msg>
+  401029:	48 c7 c2 15 00 00 00 	mov    $0x15,%rdx
+  401030:	0f 05                	syscall
+  401032:	48 c7 c0 3c 00 00 00 	mov    $0x3c,%rax
+  401039:	48 c7 c7 00 00 00 00 	mov    $0x0,%rdi
+  401040:	0f 05                	syscall
+
+0000000000401042 <fork_error>:
+  401042:	48 c7 c0 01 00 00 00 	mov    $0x1,%rax
+  401049:	48 c7 c7 02 00 00 00 	mov    $0x2,%rdi
+  401050:	48 8d 35 d2 0f 00 00 	lea    0xfd2(%rip),%rsi        # 402029 <error_msg>
+  401057:	48 c7 c2 0e 00 00 00 	mov    $0xe,%rdx
+  40105e:	0f 05                	syscall
+  401060:	48 c7 c0 3c 00 00 00 	mov    $0x3c,%rax
+  401067:	48 c7 c7 01 00 00 00 	mov    $0x1,%rdi
+  40106e:	0f 05                	syscall
+
+0000000000401070 <child_process>:
+  401070:	48 c7 c0 01 00 00 00 	mov    $0x1,%rax
+  401077:	48 c7 c7 01 00 00 00 	mov    $0x1,%rdi
+  40107e:	48 8d 35 90 0f 00 00 	lea    0xf90(%rip),%rsi        # 402015 <child_msg>
+  401085:	48 c7 c2 14 00 00 00 	mov    $0x14,%rdx
+  40108c:	0f 05                	syscall
+  40108e:	48 c7 c0 3c 00 00 00 	mov    $0x3c,%rax
+  401095:	48 c7 c7 0a 00 00 00 	mov    $0xa,%rdi
+  40109c:	0f 05                	syscall
