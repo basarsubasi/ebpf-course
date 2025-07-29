@@ -1,0 +1,3 @@
+https://en.wikipedia.org/wiki/Firmware
+https://en.wikipedia.org/wiki/Non-volatile_memory
+https://en.wikipedia.org/wiki/Read-only_memory
