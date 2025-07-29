@@ -1,7 +1,6 @@
-// hello_world.c (Correct Code)
 #include <stdio.h>
 
 int main() {
-    printf("Hello, World!\n");
+    printf("helloworld");
     return 0;
 }
